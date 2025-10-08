@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="th" xmlns:th="http://www.thymeleaf.org" th:replace="layout :: content">
+<main class="container">
+  <h1 th:text="${job.title}">งาน</h1>
+  <p><b>สถานที่:</b> <span th:text="${job.location}">-</span></p>
+  <p><b>หมวด:</b> <span th:text="${job.category} ?: '-'">-</span></p>
+  <pre class="desc" th:text="${job.description}">รายละเอียด</pre>
+
+  <div th:if="${isStudent}">
+    <h2>สมัครเข้าร่วม</h2>
+    <form method="post" th:action="@{'/jobs/' + ${job.id} + '/apply'}">
+      <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+      <label>เหตุผล/แรงจูงใจ
+        <textarea name="motivation" rows="4" required placeholder="เล่าเหตุผล/ประสบการณ์สั้นๆ"></textarea>
+      </label>
+      <button type="submit">ส่งใบสมัคร</button>
+    </form>
+  </div>
+
+  <div th:if="${!isStudent}">
+    <p><i>เฉพาะนักศึกษาที่เข้าสู่ระบบในบทบาท STUDENT จึงจะเห็นแบบฟอร์มสมัคร</i></p>
+  </div>
+</main>
+</html>

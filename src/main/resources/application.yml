@@ -1,0 +1,17 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/uni_activities}
+    username: ${SPRING_DATASOURCE_USERNAME:uni}
+    password: ${SPRING_DATASOURCE_PASSWORD:uni}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  thymeleaf:
+    cache: false
+
+app:
+  staff-register-secret: ${STAFF_REG_CODE:letmein}

@@ -1,0 +1,18 @@
+:root { --bg:#f7f7fb; --fg:#222; --card:#fff; --brand:#2a5bd7; }
+* { box-sizing:border-box; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+body { margin:0; color:var(--fg); background:var(--bg); }
+.container { max-width: 960px; margin: 0 auto; padding: 16px; }
+.topbar { background:#fff; border-bottom:1px solid #eee; }
+.topbar .brand { font-weight:700; color:var(--brand); text-decoration:none; margin-right:16px; }
+.topbar nav a { margin-left:12px; text-decoration:none; color:#333; }
+h1,h2,h3 { margin: 8px 0 12px; }
+label { display:block; margin: 8px 0; }
+input[type=text],input[type=email],input[type=password],textarea,select {
+  width:100%; padding:10px; border:1px solid #ddd; border-radius:8px; background:#fff;
+}
+button { padding:10px 14px; border:0; border-radius:10px; background:var(--brand); color:#fff; cursor:pointer; }
+.cards { display:grid; gap:12px; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+.card { background:var(--card); border:1px solid #eee; border-radius:12px; padding:16px; }
+pre.desc { white-space: pre-wrap; background:#fafafa; padding:12px; border-radius:8px; border:1px solid #eee; }
+.error { color:#c00; }
+.footer { color:#555; padding:16px 0; }

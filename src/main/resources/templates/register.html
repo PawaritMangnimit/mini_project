@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="th" xmlns:th="http://www.thymeleaf.org" th:replace="layout :: content">
+<main class="container">
+  <h1>สมัครสมาชิก</h1>
+  <p class="error" th:if="${error}" th:text="${error}"></p>
+  <form method="post" th:action="@{/register}">
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+    <label>อีเมล <input type="email" name="email" required/></label>
+    <label>ชื่อ-นามสกุล <input type="text" name="fullName" required/></label>
+    <label>รหัสผ่าน <input type="password" name="password" required/></label>
+    <label>บทบาท
+      <select name="role" id="role-select" onchange="toggleStaffSecret()">
+        <option value="STUDENT">นักศึกษา</option>
+        <option value="STAFF">อาจารย์/บุคลากร</option>
+      </select>
+    </label>
+    <div id="staff-secret" style="display:none;">
+      <label>รหัสยืนยัน STAFF <input type="text" name="staffSecretInput" placeholder="ขอจากฝ่ายกิจการนิสิต"/></label>
+    </div>
+    <button type="submit">สมัคร</button>
+  </form>
+  <script>
+    function toggleStaffSecret(){
+      const role = document.getElementById('role-select').value;
+      document.getElementById('staff-secret').style.display = role === 'STAFF' ? 'block' : 'none';
+    }
+    toggleStaffSecret();
+  </script>
+</main>
+</html>

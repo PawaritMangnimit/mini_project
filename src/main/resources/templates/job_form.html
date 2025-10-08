@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="th" xmlns:th="http://www.thymeleaf.org" th:replace="layout :: content">
+<main class="container">
+  <h1>ลงประกาศงาน (STAFF)</h1>
+  <form method="post" th:action="@{/jobs}">
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+    <label>ชื่องาน <input type="text" name="title" required/></label>
+    <label>สถานที่ <input type="text" name="location" required/></label>
+    <label>หมวดหมู่ <input type="text" name="category" placeholder="เช่น Volunteer, งาน Staff"/></label>
+    <label>รายละเอียด
+      <textarea name="description" rows="6" required></textarea>
+    </label>
+    <button type="submit">บันทึกประกาศ</button>
+  </form>
+</main>
+</html>
