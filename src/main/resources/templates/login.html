@@ -1,13 +1,23 @@
 <!DOCTYPE html>
-<html lang="th" xmlns:th="http://www.thymeleaf.org" th:replace="layout :: content">
-<main class="container">
-  <h1>เข้าสู่ระบบ</h1>
-  <form method="post" th:action="@{/login}">
-    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
-    <label>อีเมล <input type="email" name="username" required/></label>
-    <label>รหัสผ่าน <input type="password" name="password" required/></label>
-    <button type="submit">เข้าสู่ระบบ</button>
-  </form>
-  <p>ทดสอบเร็วๆ: staff@uni.local / 123456 หรือ student@uni.local / 123456</p>
-</main>
+<html lang="th" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <title>เข้าสู่ระบบ</title>
+  <link rel="stylesheet" th:href="@{/css/main.css}"/>
+</head>
+<body>
+  <div th:replace="~{layout :: header}"></div>
+  <main class="container">
+    <h1>เข้าสู่ระบบ</h1>
+    <form th:action="@{/login}" method="post">
+      <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+      <label>อีเมล <input type="email" name="username" required/></label>
+      <label>รหัสผ่าน <input type="password" name="password" required/></label>
+      <button type="submit">เข้าสู่ระบบ</button>
+    </form>
+    <p th:if="${param.logout}" style="color:green;">ออกจากระบบสำเร็จแล้ว</p>
+    <p th:if="${param.error}" style="color:red;">อีเมลหรือรหัสผ่านไม่ถูกต้อง</p>
+  </main>
+  <div th:replace="~{layout :: footer}"></div>
+</body>
 </html>

@@ -1,17 +1,27 @@
 <!DOCTYPE html>
-<html lang="th" xmlns:th="http://www.thymeleaf.org" th:replace="layout :: content">
-<main class="container">
-  <h1>การสมัครของฉัน</h1>
-  <div class="cards" th:if="${#lists.isEmpty(apps)}">
-    <p>ยังไม่มีการสมัคร</p>
-  </div>
-  <div class="cards" th:if="${!#lists.isEmpty(apps)}">
-    <div class="card" th:each="a : ${apps}">
-      <h3 th:text="${a.job.title}">งาน</h3>
-      <p><b>สมัครเมื่อ:</b> <span th:text="${#temporals.format(a.createdAt, 'yyyy-MM-dd HH:mm')}">เวลา</span></p>
-      <p><b>เหตุผล:</b></p>
-      <pre class="desc" th:text="${a.motivation}">เหตุผล</pre>
+<html lang="th" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>การสมัครของฉัน</title>
+  <link rel="stylesheet" th:href="@{/css/main.css}"/>
+</head>
+<body>
+  <div th:replace="~{layout :: header}"></div>
+  <main class="container">
+    <h1>การสมัครของฉัน</h1>
+    <div class="cards" th:if="${#lists.isEmpty(apps)}">
+      <p>ยังไม่มีการสมัคร</p>
     </div>
-  </div>
-</main>
+    <div class="cards" th:if="${!#lists.isEmpty(apps)}">
+      <div class="card" th:each="a : ${apps}">
+        <h3 th:text="${a.job.title}">งาน</h3>
+        <p><b>สมัครเมื่อ:</b> <span th:text="${#temporals.format(a.createdAt, 'yyyy-MM-dd HH:mm')}">เวลา</span></p>
+        <p><b>เหตุผล:</b></p>
+        <pre class="desc" th:text="${a.motivation}">เหตุผล</pre>
+      </div>
+    </div>
+  </main>
+  <div th:replace="~{layout :: footer}"></div>
+</body>
 </html>

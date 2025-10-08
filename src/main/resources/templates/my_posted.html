@@ -1,17 +1,27 @@
 <!DOCTYPE html>
-<html lang="th" xmlns:th="http://www.thymeleaf.org" th:replace="layout :: content">
-<main class="container">
-  <h1>งานที่ฉันสร้าง</h1>
-  <div class="cards" th:if="${#lists.isEmpty(myjobs)}">
-    <p>ยังไม่มีงานที่สร้าง</p>
-  </div>
-  <div class="cards" th:if="${!#lists.isEmpty(myjobs)}">
-    <div class="card" th:each="j : ${myjobs}">
-      <h3><a th:href="@{'/jobs/' + ${j.id}}" th:text="${j.title}">ชื่องาน</a></h3>
-      <p th:text="${j.description.length() > 140 ? j.description.substring(0,140) + '...' : j.description}">รายละเอียด</p>
-      <p><b>สถานที่:</b> <span th:text="${j.location}">ที่ตั้ง</span></p>
-      <p><b>หมวด:</b> <span th:text="${j.category} ?: '-'">หมวด</span></p>
+<html lang="th" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>งานที่ฉันสร้าง</title>
+  <link rel="stylesheet" th:href="@{/css/main.css}"/>
+</head>
+<body>
+  <div th:replace="~{layout :: header}"></div>
+  <main class="container">
+    <h1>งานที่ฉันสร้าง</h1>
+    <div class="cards" th:if="${#lists.isEmpty(myjobs)}">
+      <p>ยังไม่มีงานที่สร้าง</p>
     </div>
-  </div>
-</main>
+    <div class="cards" th:if="${!#lists.isEmpty(myjobs)}">
+      <div class="card" th:each="j : ${myjobs}">
+        <h3><a th:href="@{'/jobs/' + ${j.id}}" th:text="${j.title}">ชื่องาน</a></h3>
+        <p th:text="${j.description.length() > 140 ? j.description.substring(0,140) + '...' : j.description}">รายละเอียด</p>
+        <p><b>สถานที่:</b> <span th:text="${j.location}">ที่ตั้ง</span></p>
+        <p><b>หมวด:</b> <span th:text="${j.category} ?: '-'">หมวด</span></p>
+      </div>
+    </div>
+  </main>
+  <div th:replace="~{layout :: footer}"></div>
+</body>
 </html>

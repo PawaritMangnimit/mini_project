@@ -2,12 +2,12 @@
 <html lang="th" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
   <title th:text="${title} ?: 'Uni Activities'">Uni Activities</title>
   <link rel="stylesheet" th:href="@{/css/main.css}"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1"/>
 </head>
 <body>
-<header class="topbar">
+<header th:fragment="header" class="topbar">
   <div class="container">
     <a class="brand" th:href="@{/}">Uni Activities</a>
     <nav>
@@ -16,7 +16,10 @@
         <a th:if="${isStaff}" th:href="@{/jobs/new}">ลงประกาศงาน</a>
         <a th:if="${isStaff}" th:href="@{/me/posted}">งานที่ฉันสร้าง</a>
         <a th:if="${isStudent}" th:href="@{/me/applications}">การสมัครของฉัน</a>
-        <a th:href="@{/logout}">ออกจากระบบ</a>
+        <form th:action="@{/logout}" method="post" style="display:inline; margin-left:8px;">
+          <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
+          <button type="submit" style="background:none;border:none;color:#06c;cursor:pointer;padding:0;">ออกจากระบบ</button>
+        </form>
       </span>
       <span th:if="${!isAuthenticated}">
         <a th:href="@{/login}">เข้าสู่ระบบ</a>
@@ -26,11 +29,7 @@
   </div>
 </header>
 
-<main class="container" th:fragment="content">
-  <div>Content</div>
-</main>
-
-<footer class="footer">
+<footer th:fragment="footer" class="footer">
   <div class="container">
     <small>Prototype • Spring Boot + Docker • สำหรับใช้งานภายในมหาลัย</small>
   </div>
